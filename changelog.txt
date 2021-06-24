@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 - Changelog for v0.1.0 (2021-06-24)
   
+=======
+- Changelog for v0.1.0 (2021-06-24)
+  
+>>>>>>> 777e805e19041e9961149e54063b0936f15360f3
     * Create changelog.txt
