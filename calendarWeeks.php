@@ -1,22 +1,83 @@
 <?php
 
 
-$currDate=date('d/m'); //Var globale représentant la date actuellement simulée
+global $week;
+$week=array();//Contiendra les dates des jours de la semaine en cours, du lundi au dimanche. 
+//Format standard Y-m-d (apparemment obligatoire pour faire ensuite des opérations sur les dates)
 
-//echo $currDate; Trouve un moyen de passer la date Php au JS. Actuellement, transforme currDate en "4"
+global $weekLite;
+$weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utilisé pour l'affichage
+
+global $year;
+
+//Probleme des vars globales avec Ajax. Ne marche pas, ne permet d'avancer/reculer qu'une seule fois actuellement
 
 
-//Réflechir à un système permettant de "retenir" la date simulée, et de la passer à la page Ajax. Pour pouvoir avancer plusieurs fois à la suite.
+    $monday = strtotime('monday this week');
+    foreach (range(0, 6) as $day) {
+        $week[$day] = date("Y-m-d", (($day * 86400) + $monday));
+        $weekLite[$day]=date('d/m', strtotime($week[$day]));
+    }
+    $year=date("Y", ($monday));
 
 
 
-$week = [];//Contiendra les dates des jours de la semaine en cours, du lundi au dimanche
 
-$monday = strtotime('monday this week');
-foreach (range(0, 6) as $day) {
-    $week[] = date("d/m", (($day * 86400) + $monday));
+
+//Si on vient ici par l'AJAX, pour mettre à jour les semaines : 
+
+if ( isset($_POST['type']) && isset($_POST['ID']) && isset($_POST['index']) && $_POST['Request']=="changeWeeks") { 
+
+    $type=$_POST['type'];
+    $ID=$_POST['ID'];
+    $i=$_POST['index'];
+    
+
+    if($type=="previous"){  
+        //Calculer la date 7 jours avant la date actuelle
+
+
+            $week[$i]=date('Y-m-d', strtotime($week[$i] .' -7 day'));
+            $weekLite[$i]=date('d/m', strtotime($week[$i]));
+     
+            echo $weekLite[$i]; //Remplace la date affichée
+    }
+
+
+    else if($type=="today"){
+    
+        $monday = strtotime('monday this week');
+
+        $week[$i] = date("Y-m-d", (($i * 86400) + $monday));
+        $weekLite[$i]=date('d/m', strtotime($week[$i]));
+    
+     
+        echo $weekLite[$i]; //Remplace la date affichée
+
+    }
+
+
+    else if($type=="next"){
+        
+        $week[$i]=date('Y-m-d', strtotime($week[$i] .' +7 day'));
+        $weekLite[$i]=date('d/m', strtotime($week[$i]));
+     
+         echo $weekLite[$i]; //Remplace la date affichée
+
+    }
+
+
+    else if($type=="year"){
+
+      $year=date('Y', strtotime($week[0])); //On prend l'année du début de la semaine 
+
+      echo $year;
+    }
+   
+
+
+    exit;
 }
-$year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais si on veut un truc autonome faut le faire
 
 ?>
 
@@ -29,21 +90,17 @@ $year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais
         <title>Le calendrier</title>
         <link rel="stylesheet" href="css/styleCalendar.css">
 
-        <!-- <link rel="stylesheet" href="css/dark.css"> (Non réutilisable tel quel car change aussi les boutons)
-        <link rel="stylesheet" href="css/nouislider.css">
-        <link type="text/css" rel="stylesheet" href="css/tail.datetime-default.css">
-        <link rel="stylesheet" href="css/tail.datetime-harx-dark.min.css">-->
 
         <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/457233258661281793/458727800048713728/dae-cmd.png">
         <script type="text/javascript" src="js/scriptDates.js"></script>
 
     </head>
-    <body id="body" onload="currentWeek()"> <!--Quand la page se charge, appeler currentWeek() pour afficher la semaine actuelle-->
+    <body id="body">
 
         <div class="btn-container">
-            <button id="btn_Precedent" onclick="changeWeek('previous', <?=$currDate?>)"><--</button>
-            <button id="btn_Today" onclick="changeWeek('currDate', <?=$currDate?>)">Aujourd'hui</button>
-            <button id="btn_Suivant" onclick="changeWeek('next', <?=$currDate?>)">--></button>
+            <button id="btn_Precedent" onclick="changeWeek('previous')"><--</button>
+            <button id="btn_Today" onclick="changeWeek('today')">Aujourd'hui</button>
+            <button id="btn_Suivant" onclick="changeWeek('next')">--></button>
         </div>
 
         
@@ -72,13 +129,13 @@ $year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais
                 </ul>
 
                 <ul class="dayNumbers-container">  <!--Actuellement la classe n'est pas utilisée dans le CSS. Les IDs servent pour l'Ajax-->
-                    <li id="day1" class="dayNumbers"><?=$week[0]?></li>
-                    <li id="day2" class="dayNumbers"><?=$week[1]?></li>
-                    <li id="day3" class="dayNumbers"><?=$week[2]?></li>
-                    <li id="day4" class="dayNumbers"><?=$week[3]?></li>
-                    <li id="day5" class="dayNumbers"><?=$week[4]?></li>
-                    <li id="day6" class="dayNumbers"><?=$week[5]?></li>
-                    <li id="day7" class="dayNumbers"><?=$week[6]?></li>
+                    <li id="day0"><?=$weekLite[0]?></li>
+                    <li id="day1"><?=$weekLite[1]?></li>
+                    <li id="day2"><?=$weekLite[2]?></li>
+                    <li id="day3"><?=$weekLite[3]?></li>
+                    <li id="day4"><?=$weekLite[4]?></li>
+                    <li id="day5"><?=$weekLite[5]?></li>
+                    <li id="day6"><?=$weekLite[6]?></li>
                 </ul>
 
             </div>
@@ -127,5 +184,4 @@ $year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais
 
     </body>
     </html>
-
 
