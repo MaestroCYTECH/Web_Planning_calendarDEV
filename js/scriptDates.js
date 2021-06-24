@@ -24,8 +24,11 @@ function changeWeek(type){ //Ajax. type=next ou previous ou today
 
 
     xmlhttp.open("POST","php/changeWeek.php",true); //Change la semaine et charge les parties qui y sont prévues
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xmlhttp.send("type="+type);
-    }
+    }if ( !isset($_POST['ref'])){ //Si pas d'article selectionné
+    header('Location:/LeCoinPhoto/navigation/panier.php');
+}
 
 }
 

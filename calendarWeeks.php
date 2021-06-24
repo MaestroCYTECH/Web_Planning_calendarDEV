@@ -69,7 +69,7 @@ $year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais
                     <li>Dimanche</li>
                 </ul>
 
-                <ul class="dayNumbers-container">  <!--Les ID ne seront pt etre pas utile, à voir-->
+                <ul class="dayNumbers-container">  <!--Actuellement la classe n'est pas utilisée dans le CSS. Les IDs servent pour l'Ajax-->
                     <li id="day1" class="dayNumbers"><?=$week[0]?></li>
                     <li id="day2" class="dayNumbers"><?=$week[1]?></li>
                     <li id="day3" class="dayNumbers"><?=$week[2]?></li>
