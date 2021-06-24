@@ -1,25 +1,24 @@
 
 //Version PHP/Ajax :
 
-function changeWeek(type, currDate){ //Ajax. type=next ou previous ou today. la var currDate symbolise la date actuellement simulée (change quand on avance ou recule de semaines)
+function changeWeek(type){ //Ajax. type=next ou previous ou today. la var currDate symbolise la date actuellement simulée (change quand on avance ou recule de semaines)
+//Pas trouvé de moyen de changer plusieurs zones en une seule requete Ajax
 
-   /* alert(currDate);*/
+ 
+    for (var i = 0; i <=6; i++) {
+        
+        AJAX('day'+i, type, i); 
+    }
 
-    AJAX('day1', type, currDate);
-    AJAX('day2', type, currDate);
-    AJAX('day3', type, currDate);
-    AJAX('day4', type, currDate);
-    AJAX('day5', type, currDate);
-    AJAX('day6', type, currDate);
-    AJAX('day7', type, currDate);
-    
+
+    AJAX("annee", "year", 0);
 
 //C'est le moyen le plus simple que j'ai trouvé pour changer plusieurs endroits d'un coup avec Ajax
 }
 
-function AJAX(ID, type, currDate){
+function AJAX(ID, type, i){
 
-    if (type == "" && type!="previous" && type!="next" && type!="today") { //Si demande invalide
+    if (type!="previous" && type!="next" && type!="today" && type!="year") { //Si demande invalide
         return;
     } else {
 
@@ -34,9 +33,9 @@ function AJAX(ID, type, currDate){
     };
 
 
-    xmlhttp.open("POST","php/changeWeek.php",true); //Change la semaine et charge les parties qui y sont prévues
+    xmlhttp.open("POST","calendarWeeks.php",true); //Change la semaine et charge les parties qui y sont prévues
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send("ID="+ID+"&type="+type+"&currDate="+currDate);
+    xmlhttp.send("ID="+ID+"&type="+type+"&Request=changeWeeks"+"&index="+i);
     }
 
 }
@@ -62,12 +61,12 @@ function AJAX(ID, type, currDate){
 
 
 
-/*
+
 //Version full JavaScript :
-let globalCurrDateDate = new Date; //var globale représentant la date actuellement simulée (change lorsqu'on avance/recule les semaines)
+let globalCurrDate = new Date; //var globale représentant la date actuellement simulée (change lorsqu'on avance/recule les semaines)
 
 
- 
+ /*
 
 function currentWeek(){ //Se charge au lancement de la page, ou lorsqu'on clique sur "aujourd'hui".
 
