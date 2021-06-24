@@ -1,4 +1,57 @@
 
+//Version PHP/Ajax :
+
+function changeWeek(type){ //Ajax. type=next ou previous ou today
+
+    if (type == "" && type!="previous" && type!="next" && type!="today") { //Si demande invalide
+        return;
+    } else {
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) { //Si la requete est prete, on fait : 
+            
+          document.getElementById('day1').innerHTML = this.responseText;
+          document.getElementById('day2').innerHTML = this.responseText;
+          document.getElementById('day3').innerHTML = this.responseText;
+          document.getElementById('day4').innerHTML = this.responseText;
+          document.getElementById('day5').innerHTML = this.responseText;
+          document.getElementById('day6').innerHTML = this.responseText;
+          document.getElementById('day7').innerHTML = this.responseText;
+        }
+    };
+
+
+    xmlhttp.open("POST","php/changeWeek.php",true); //Change la semaine et charge les parties qui y sont prévues
+    xmlhttp.send("type="+type);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//Version full JavaScript :
 let globalCurrDateDate = new Date; //var globale représentant la date actuellement simulée (change lorsqu'on avance/recule les semaines)
 
 
@@ -84,4 +137,4 @@ function datesFullWeek(curr){ //Affiche toute la semaine (avec les bonnes dates)
 
     document.getElementById("annee").innerHTML = curr.getFullYear();
 }
-
+*/

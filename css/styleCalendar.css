@@ -53,7 +53,7 @@ ul{
 }
 
 .weekDays,
-.dayNumbers{
+.dayNumbers-container{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -84,7 +84,7 @@ ul{
   min-height: 60px;
 }
 
-.dayNumbers li{
+.dayNumbers-container li{
   min-height: 2 em;
 }
 
