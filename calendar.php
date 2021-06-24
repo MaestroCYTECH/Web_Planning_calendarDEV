@@ -1,3 +1,19 @@
+<?php
+
+$today=date('d/m');
+
+echo $today;
+
+
+$week = [];
+$monday = strtotime('monday this week');
+foreach (range(0, 6) as $day) {
+    $week[] = date("d/m/Y", (($day * 86400) + $monday));
+}
+
+var_dump($week);
+
+?>
 
 
 <!DOCTYPE html>
@@ -34,7 +50,7 @@
 
 
     <br>
-        <h2 align="center">Le calendrier <label id="annee"></label> </h2>
+        <h2 class="titleCenter">Le calendrier <label id="annee"></label> </h2>
     <br>
 
         <div class="calendar">
@@ -64,6 +80,8 @@
 <br><br>
             <div class="timeslots-containers">
                 <ul class="timeslots">
+                    <li>6h</li>
+                    <li>7h</li>
                     <li>8h</li>
                     <li>9h</li>
                     <li>10h</li>
@@ -79,6 +97,13 @@
                     <li>20h</li>
                     <li>21h</li>
                     <li>22h</li>
+                    <li>23h</li>
+                    <li>0h</li>
+                    <li>1h</li>
+                    <li>2h</li>
+                    <li>3h</li>
+                    <li>4h</li>
+                    <li>5h</li>
                 </ul>
             </div>
 
