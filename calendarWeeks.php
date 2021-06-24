@@ -1,10 +1,12 @@
 <?php
-/*
-$today=date('d/m');
-echo $today;*/
 
 
+$currDate=date('d/m'); //Var globale représentant la date actuellement simulée
 
+//echo $currDate; Trouve un moyen de passer la date Php au JS. Actuellement, transforme currDate en "4"
+
+
+//Réflechir à un système permettant de "retenir" la date simulée, et de la passer à la page Ajax. Pour pouvoir avancer plusieurs fois à la suite.
 
 
 
@@ -39,9 +41,9 @@ $year=date("Y", ($monday));//L'année. Pas utile si on est loin de janvier, mais
     <body id="body" onload="currentWeek()"> <!--Quand la page se charge, appeler currentWeek() pour afficher la semaine actuelle-->
 
         <div class="btn-container">
-            <button id="btn_Precedent" onclick="changeWeek('previous')"><--</button>
-            <button id="btn_Today" onclick="changeWeek('today')">Aujourd'hui</button>
-            <button id="btn_Suivant" onclick="changeWeek('next')">--></button>
+            <button id="btn_Precedent" onclick="changeWeek('previous', <?=$currDate?>)"><--</button>
+            <button id="btn_Today" onclick="changeWeek('currDate', <?=$currDate?>)">Aujourd'hui</button>
+            <button id="btn_Suivant" onclick="changeWeek('next', <?=$currDate?>)">--></button>
         </div>
 
         
