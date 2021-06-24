@@ -1,7 +1,23 @@
 
 //Version PHP/Ajax :
 
-function changeWeek(type){ //Ajax. type=next ou previous ou today
+function changeWeek(type, currDate){ //Ajax. type=next ou previous ou today. la var currDate symbolise la date actuellement simulée (change quand on avance ou recule de semaines)
+
+   /* alert(currDate);*/
+
+    AJAX('day1', type, currDate);
+    AJAX('day2', type, currDate);
+    AJAX('day3', type, currDate);
+    AJAX('day4', type, currDate);
+    AJAX('day5', type, currDate);
+    AJAX('day6', type, currDate);
+    AJAX('day7', type, currDate);
+    
+
+//C'est le moyen le plus simple que j'ai trouvé pour changer plusieurs endroits d'un coup avec Ajax
+}
+
+function AJAX(ID, type, currDate){
 
     if (type == "" && type!="previous" && type!="next" && type!="today") { //Si demande invalide
         return;
@@ -12,23 +28,16 @@ function changeWeek(type){ //Ajax. type=next ou previous ou today
 
         if (this.readyState == 4 && this.status == 200) { //Si la requete est prete, on fait : 
             
-          document.getElementById('day1').innerHTML = this.responseText;
-          document.getElementById('day2').innerHTML = this.responseText;
-          document.getElementById('day3').innerHTML = this.responseText;
-          document.getElementById('day4').innerHTML = this.responseText;
-          document.getElementById('day5').innerHTML = this.responseText;
-          document.getElementById('day6').innerHTML = this.responseText;
-          document.getElementById('day7').innerHTML = this.responseText;
+          document.getElementById(ID).innerHTML = this.responseText;
+         
         }
     };
 
 
     xmlhttp.open("POST","php/changeWeek.php",true); //Change la semaine et charge les parties qui y sont prévues
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send("type="+type);
-    }if ( !isset($_POST['ref'])){ //Si pas d'article selectionné
-    header('Location:/LeCoinPhoto/navigation/panier.php');
-}
+    xmlhttp.send("ID="+ID+"&type="+type+"&currDate="+currDate);
+    }
 
 }
 
