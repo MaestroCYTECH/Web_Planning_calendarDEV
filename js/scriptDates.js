@@ -2,7 +2,7 @@
 let globalCurrDateDate = new Date; //var globale représentant la date actuellement simulée (change lorsqu'on avance/recule les semaines)
 
 
-
+ 
 
 function currentWeek(){ //Se charge au lancement de la page, ou lorsqu'on clique sur "aujourd'hui".
 

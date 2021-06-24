@@ -11,7 +11,7 @@ foreach (range(0, 6) as $day) {
     $week[] = date("d/m/Y", (($day * 86400) + $monday));
 }
 
-var_dump($week);
+var_dump($week); 
 
 ?>
 
