@@ -137,6 +137,7 @@ $weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utili
         <div class="header">
             <ul class="weekDays">
                 <?php
+                    # Génére une liste des jours de la semaine
                     foreach ($daysOfTheWeek as $day)
                         echo '<li>' . $day . '</li>'
                 ?>
