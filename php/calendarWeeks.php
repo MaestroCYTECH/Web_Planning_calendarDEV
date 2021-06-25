@@ -10,8 +10,12 @@
         $_SESSION['monday'] = new DateTimeImmutable('monday this week');
 
     if (isset($_POST['timeInterval']))
-        $_SESSION['monday'] = $_SESSION['monday']->add(date_interval_create_from_date_string($_POST['timeInterval']));
+        if($_POST['timeInterval']=="reset")
+            $_SESSION['monday'] = new DateTimeImmutable('monday this week');
+        else
+            $_SESSION['monday'] = $_SESSION['monday']->add(date_interval_create_from_date_string($_POST['timeInterval']));
     
+
     $monday = $_SESSION['monday']    
 ?>
 

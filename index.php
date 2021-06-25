@@ -20,7 +20,7 @@
 
         <nav>
             <button class="btn-change btn_previous" value="-1 week"><--</button>
-            <button class="btn-change btn_current" value="0 week">Aujourd'hui</button>
+            <button class="btn-change btn_current" value="reset">Aujourd'hui</button>
             <button class="btn-change btn_next" value="+1 week">--></button>
         </nav>
     </header>
@@ -32,4 +32,7 @@
 
     <script src="js/requestCalendar.js"></script>
 </body>
+<?php
+    include('php/footer.php')
+?>
 </html>
