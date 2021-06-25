@@ -2,7 +2,6 @@
 
 
 //Si on vient ici par l'AJAX, pour mettre à jour les semaines : 
-
 if ( isset($_POST['type']) && $_POST['Request']=="changeWeeks" && isset($_POST['dateLundi'])) { 
 
     $type=$_POST['type'];
@@ -101,9 +100,7 @@ if ( isset($_POST['type']) && $_POST['Request']=="changeWeeks" && isset($_POST['
 }
 
 
-
-
-//Pour l'affichage du 1er chargement :
+// Génére le calendrier d'une semaine
 
 $week=array();//Contiendra les dates des jours de la semaine en cours, du lundi au dimanche. 
 //Format standard Y-m-d (apparemment obligatoire pour faire ensuite des opérations sur les dates)
@@ -119,8 +116,6 @@ $weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utili
     $year=date("Y", ($monday));
 
     $daysOfTheWeek = array('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche')
-
-
 ?>
 <section>
     <h2 class="titleCenter">Semaine du <label id="annee"><?=$year?></label> </h2>
@@ -174,7 +169,7 @@ $weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utili
             </ul>
         </div>
 
-        <div class="event-container"> <!--Non fonctionnel-->
+        <!--div class="event-container"> <Non fonctionnel>
             
             <div class="slot">
                 <div class="event-status"></div>
@@ -182,7 +177,7 @@ $weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utili
             </div>
         
         
-        </div>
+        </div-->
     </div>
 </section>
 

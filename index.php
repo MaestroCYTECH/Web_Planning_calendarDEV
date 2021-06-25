@@ -19,14 +19,17 @@
         <h1> Calendrier JDR <h1>
 
         <nav>
-            <button class="btn-change btn_previous" onclick="changeWeek('previous')" value="-1"><--</button>
-            <button class="btn-change btn_current" onclick="changeWeek('today')" value="0">Aujourd'hui</button>
-            <button class="btn-change btn_next" onclick="changeWeek('next')" value="+1">--></button>
+            <button class="btn-change btn_previous" value="-1 week"><--</button>
+            <button class="btn-change btn_current" value="0 week">Aujourd'hui</button>
+            <button class="btn-change btn_next" value="+1 week">--></button>
         </nav>
     </header>
-    <?php 
-        include('calendarWeeks.php')
-    ?>
+    <div id="calendarFrame">
+        <?php 
+            include('php/calendarWeeks.php')
+        ?>
+    </div>
+
     <script src="js/requestCalendar.js"></script>
 </body>
 </html>

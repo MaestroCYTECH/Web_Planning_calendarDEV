@@ -13,8 +13,6 @@ function changeWeek(type){ //Ajax. type=next ou previous ou today. la var dateLu
 
 
     //AJAX("year", dateLundi); //MAJ des années pas encore faite
-
-
 }
 
 function AJAX(type, dateLundi){
