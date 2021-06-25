@@ -4,7 +4,7 @@ $today=date('d/m');
 echo $today;*/
 
 
-
+//NON FONCTIONNEL. Pour l'instant juste copié collé de la page semaine
 
 
 

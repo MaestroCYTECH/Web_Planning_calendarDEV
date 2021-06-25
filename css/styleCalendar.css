@@ -6,6 +6,11 @@ body{
  /* overflow: hidden;*/
   color: white; 
 }
+.flex-horizontal {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .titleCenter{
   text-align: center;
