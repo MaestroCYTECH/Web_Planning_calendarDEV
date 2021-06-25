@@ -19,9 +19,9 @@
         <h1> Calendrier JDR <h1>
 
         <nav>
-            <button class="btn_previous" onclick="changeWeek('previous')"><--</button>
-            <button class="btn_current" onclick="changeWeek('today')">Aujourd'hui</button>
-            <button class="btn_next" onclick="changeWeek('next')">--></button>
+            <button class="btn-change btn_previous" onclick="changeWeek('previous')" value="-1"><--</button>
+            <button class="btn-change btn_current" onclick="changeWeek('today')" value="0">Aujourd'hui</button>
+            <button class="btn-change btn_next" onclick="changeWeek('next')" value="+1">--></button>
         </nav>
     </header>
     <?php 
