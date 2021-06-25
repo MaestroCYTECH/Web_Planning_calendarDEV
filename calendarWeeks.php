@@ -123,9 +123,7 @@ $weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utili
 
 ?>
 <section>
-    <!--br>
-        <h2 class="titleCenter">Le calendrier <label id="annee"><?=$year?></label> </h2>
-    <br-->
+    <h2 class="titleCenter">Semaine du <label id="annee"><?=$year?></label> </h2>
 
     <div class="calendar">
         <div class="header">
