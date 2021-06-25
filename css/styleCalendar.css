@@ -88,6 +88,11 @@ ul{
   min-height: 2 em;
 }
 
+.hidden{
+  display: none;
+}
+
+
 /* Pour faire les lignes de grille :
 .timeslots li::after{
   content: "";

@@ -1,22 +1,23 @@
 
 //Version PHP/Ajax :
 
-function changeWeek(type){ //Ajax. type=next ou previous ou today. la var currDate symbolise la date actuellement simulée (change quand on avance ou recule de semaines)
-//Pas trouvé de moyen de changer plusieurs zones en une seule requete Ajax
+function changeWeek(type){ //Ajax. type=next ou previous ou today. la var dateLundi symbolise la date du lundi actuellement simulée
 
+
+    var dateLundi;
  
-    for (var i = 0; i <=6; i++) {
+
+        dateLundi=document.getElementById('day0Complete').innerHTML;//On prend la date complète du Lundi. A partir d'elle on pourra retrouver toute la semaine
         
-        AJAX('day'+i, type, i); 
-    }
+        AJAX(type, dateLundi); 
 
 
-    AJAX("annee", "year", 0);
+    //AJAX("year", dateLundi); //MAJ des années pas encore faite
 
-//C'est le moyen le plus simple que j'ai trouvé pour changer plusieurs endroits d'un coup avec Ajax
+
 }
 
-function AJAX(ID, type, i){
+function AJAX(type, dateLundi){
 
     if (type!="previous" && type!="next" && type!="today" && type!="year") { //Si demande invalide
         return;
@@ -27,7 +28,7 @@ function AJAX(ID, type, i){
 
         if (this.readyState == 4 && this.status == 200) { //Si la requete est prete, on fait : 
             
-          document.getElementById(ID).innerHTML = this.responseText;
+          document.getElementById('dayNumbers-container').innerHTML = this.responseText;//On change toute la ligne des dates
          
         }
     };
@@ -35,9 +36,9 @@ function AJAX(ID, type, i){
 
     xmlhttp.open("POST","calendarWeeks.php",true); //Change la semaine et charge les parties qui y sont prévues
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send("ID="+ID+"&type="+type+"&Request=changeWeeks"+"&index="+i);
+    xmlhttp.send("type="+type+"&Request=changeWeeks"+"&dateLundi="+dateLundi);
     }
-
+/*On pourra faire request=changeToMonths plus tard par exemple*/
 }
 
 
