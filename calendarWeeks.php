@@ -123,12 +123,6 @@ $weekLite=array(); //Contiendra les dates, en format simplifié day/month. Utili
 
 ?>
 <section>
-    <div class="btn-container">
-        <button id="btn_Precedent" onclick="changeWeek('previous')"><--</button>
-        <button id="btn_Today" onclick="changeWeek('today')">Aujourd'hui</button>
-        <button id="btn_Suivant" onclick="changeWeek('next')">--></button>
-    </div>
-
     <!--br>
         <h2 class="titleCenter">Le calendrier <label id="annee"><?=$year?></label> </h2>
     <br-->
