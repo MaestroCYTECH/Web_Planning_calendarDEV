@@ -17,15 +17,16 @@
         </nav>
 
         <h1> Calendrier JDR <h1>
-            
+
         <nav>
-            <button id="btn_Precedent" onclick="changeWeek('previous')"><--</button>
-            <button id="btn_Today" onclick="changeWeek('today')">Aujourd'hui</button>
-            <button id="btn_Suivant" onclick="changeWeek('next')">--></button>
+            <button class="btn_previous" onclick="changeWeek('previous')"><--</button>
+            <button class="btn_current" onclick="changeWeek('today')">Aujourd'hui</button>
+            <button class="btn_next" onclick="changeWeek('next')">--></button>
         </nav>
     </header>
     <?php 
         include('calendarWeeks.php')
     ?>
+    <script src="js/requestCalendar.js"></script>
 </body>
 </html>
