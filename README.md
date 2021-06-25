@@ -13,7 +13,7 @@ a) PageWeb:
 - Au contraire, une partie s'étalant sur plusieurs heures doit pouvoir "étirer" le calendrier. 
 - Un bouton doit permettre de switch entre un affichage par semaine et par mois.
 - Un jour déjà passé dans la semaine doit être grisé, mais les synopsis doivent rester accessibles.
-- HTML5/CSS4/PHP
+- HTML5/CSS4/PHP/Ajax
 - Faire un affichage responsive
 - Par défaut vides, les colonnes se limitent à la largeur du jour de la semaine
 - Flèche avant et arrière pour faire défiler les semaines.
